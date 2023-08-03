@@ -12,7 +12,6 @@ import org.javers.shadow.Shadow;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -47,9 +46,9 @@ public class StoreController {
     public String getProductChanges(@PathVariable int productId) {
         Product product = storeService.findProductById(productId);
         QueryBuilder jqlQuery = QueryBuilder.byInstance(product);
-//        QueryBuilder jqlQuery = QueryBuilder.anyDomainObject().byAuthor("ROMI"); -> con el nombre de un autor
-        //QueryBuilder jqlQuery2 = QueryBuilder.anyDomainObject().withCommitProperty("ip", "ESTO ES UNA IP");// -> con el valor de una additional property
-        //QueryBuilder aa = QueryBuilder.anyDomainObject().from(LocalDateTime.now()).to(LocalDateTime.now());
+        // QueryBuilder.anyDomainObject().byAuthor("ROMI"); -> con el nombre de un autor
+        // QueryBuilder.anyDomainObject().withCommitProperty("ip", "ESTO ES UNA IP");// -> con el valor de una additional property
+        // QueryBuilder.anyDomainObject().from(LocalDateTime.now()).to(LocalDateTime.now()); -> en un periodo de tiempo
 
 
 
