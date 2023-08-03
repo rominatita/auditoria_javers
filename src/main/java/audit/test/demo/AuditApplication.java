@@ -25,8 +25,6 @@ public class AuditApplication {
 		Store store = new Store("Baeldung store", new Address("Some street", 22222));
 		for (int i = 1; i < 3; i++) {
 			Product product = new Product("Product #" + i, 100 * i);
-			product.setIp("hola");
-			product.setAuthor("hola");
 			store.addProduct(product);
 		}
 		storeRepository.save(store);

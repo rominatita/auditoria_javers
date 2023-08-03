@@ -4,13 +4,11 @@ package audit.test.demo.service;
 import audit.test.demo.domain.Product;
 import audit.test.demo.domain.Store;
 import audit.test.demo.repo.ProductRepository;
+import audit.test.demo.repo.ProductRepository2;
 import audit.test.demo.repo.StoreRepository;
-import org.javers.core.Javers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Random;
 
@@ -19,24 +17,24 @@ public class StoreService {
     @Autowired
     private final ProductRepository productRepository;
     @Autowired
+    private final ProductRepository2 productRepository2;
+    @Autowired
     private final StoreRepository storeRepository;
-    private final Javers javers;
 
 
-    public StoreService(ProductRepository productRepository, StoreRepository storeRepository, Javers javers) {
+    public StoreService(ProductRepository productRepository, ProductRepository2 productRepository2, StoreRepository storeRepository) {
         this.productRepository = productRepository;
+        this.productRepository2 = productRepository2;
         this.storeRepository = storeRepository;
-        this.javers = javers;
     }
 
-    public void updateProductPrice(Integer productId, Double price, String changeAuthor, String ip) {
+    public void updateProductPrice(Integer productId, Double price) {
         Optional<Product> productOpt = productRepository.findById(productId);
 
         productOpt.ifPresent(product -> {
-            product.setAuthor(changeAuthor);
-            product.setIp(ip);
             product.setPrice(price);
             productRepository.save(product);
+            //productRepository2.save(product); //Cuando no se usa JPA es necesario enviar el objeto modificado
         });
     }
 

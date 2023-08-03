@@ -3,7 +3,7 @@ package audit.test.demo.domain;
 import jakarta.persistence.*;
 
 @Entity
-public class Product extends Auditable {
+public class Product {
     @Id
     @GeneratedValue
     private int id;

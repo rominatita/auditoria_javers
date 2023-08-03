@@ -38,11 +38,9 @@ public class StoreController {
     @PostMapping(value = "/stores/{storeId}/products/{productId}/price", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void updateProductPrice(@PathVariable final Integer productId,
                                    @PathVariable String storeId,
-                                   @RequestBody UpdatePriceDto priceDto,
-                                   @RequestHeader String changeAuthor,
-                                   @RequestHeader String ip
+                                   @RequestBody UpdatePriceDto priceDto
                                    ) {
-        storeService.updateProductPrice(productId, priceDto.price, changeAuthor, ip);
+        storeService.updateProductPrice(productId, priceDto.price);
     }
 
     @GetMapping("/products/{productId}/changes")
