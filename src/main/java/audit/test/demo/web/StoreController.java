@@ -72,6 +72,15 @@ public class StoreController {
         return javers.getJsonConverter().toJson(shadows.get(0));
     }
 
+    @GetMapping("/products/{productId}/shadows")
+    public String getProductShadows(@PathVariable int productId) {
+        Product product = storeService.findProductById(productId);
+        JqlQuery jqlQuery = QueryBuilder.byInstance(product)
+                .withChildValueObjects().build();
+        List<Shadow<Product>> shadows = javers.findShadows(jqlQuery);
+        return javers.getJsonConverter().toJson(shadows.get(0));
+    }
+
     @GetMapping("/stores/snapshots")
     public String getStoresSnapshots() {
         QueryBuilder jqlQuery = QueryBuilder.byClass(Store.class);
